@@ -5,7 +5,16 @@ import 'package:DevQuiz/shared/widgets/progess_indicator/linear_progress_indicat
 import 'package:flutter/material.dart';
 
 class QuizCardWidget extends StatelessWidget {
-  const QuizCardWidget({Key? key}) : super(key: key);
+  final String title;
+  final String completed;
+  final double progress;
+
+  const QuizCardWidget({
+    Key? key, 
+    required this.title, 
+    required this.completed,
+    required this.progress
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +36,17 @@ class QuizCardWidget extends StatelessWidget {
             child: Image.asset(AppImages.data),
           ),
           SizedBox(height:24),
-          Text("Grestao de Estado", style: AppTextStyles.heading15),
+          Text(title, style: AppTextStyles.heading15),
           SizedBox(height:24),
           Row(
             children: [
               Expanded(
                 flex: 1,
-                child: Text("3 de 10", style: AppTextStyles.body11)
+                child: Text(completed, style: AppTextStyles.body11)
               ),
               Expanded(
                 flex: 2,
-                child: LinearProgressIndicatorWidget(value: 0.3),
+                child: LinearProgressIndicatorWidget(value: progress),
               )
             ]
           )
