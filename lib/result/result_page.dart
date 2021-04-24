@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:DevQuiz/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:DevQuiz/core/core.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ResultPage extends StatelessWidget {
   final String title;
@@ -46,7 +47,11 @@ class ResultPage extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 68),
-                        child: NextButtonWidget.purple(label: "Compartilhar", onTap: () {}),
+                        child: NextButtonWidget.purple(label: "Compartilhar", onTap: () {
+                          Share.share(
+                            "DevQuiz: Finalizei o Quiz $title com ${((correctCuestionCount / questionCount) *100).round()}% de aproveitamento."
+                          );
+                        }),
                       )
                     ),
                   ],
