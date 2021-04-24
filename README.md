@@ -1,6 +1,11 @@
-# devquiz
+# DevQuiz
 
-A new Flutter project.
+This is a project created as part of the fifth edition of the [NextLevelWeek](https://nextlevelweek.com/).
+
+This is the final result: 
+
+![NLW](https://user-images.githubusercontent.com/3598030/115970500-fb736380-a542-11eb-9101-4a7db96b3607.gif)
+
 
 ## Getting Started
 
