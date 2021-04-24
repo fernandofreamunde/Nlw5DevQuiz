@@ -1,9 +1,19 @@
-import 'package:DevQuiz/challenge/widgets/next_button/next_button_widget.dart';
-import 'package:DevQuiz/core/core.dart';
 import 'package:flutter/material.dart';
 
+import 'package:DevQuiz/challenge/widgets/next_button/next_button_widget.dart';
+import 'package:DevQuiz/core/core.dart';
+
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  final String title;
+  final int questionCount;
+  final int correctCuestionCount;
+
+  const ResultPage({
+    Key? key,
+    required this.title,
+    required this.questionCount,
+    required this.correctCuestionCount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +32,8 @@ class ResultPage extends StatelessWidget {
               Text.rich(
                 TextSpan(text: "Você concluiu", style: AppTextStyles.body, 
                   children: [
-                    TextSpan(text: "\nGerenciamento de Estado", style: AppTextStyles.bodyBold, ),
-                    TextSpan(text: "\ncom 6 de 10 acertos.", style: AppTextStyles.body, ),
+                    TextSpan(text: "\n$title", style: AppTextStyles.bodyBold, ),
+                    TextSpan(text: "\ncom $correctCuestionCount de $questionCount acertos.", style: AppTextStyles.body, ),
                   ]
                 ), textAlign: TextAlign.center,
               ),

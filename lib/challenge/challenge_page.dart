@@ -1,18 +1,20 @@
-import 'package:DevQuiz/challenge/challenge_controller.dart';
-import 'package:DevQuiz/result/result_page.dart';
 import 'package:flutter/material.dart';
+import 'package:DevQuiz/challenge/challenge_controller.dart';
 import 'package:DevQuiz/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:DevQuiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
 import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget.dart';
+import 'package:DevQuiz/result/result_page.dart';
 import 'package:DevQuiz/shared/models/question_model.dart';
 
 class ChallengePage extends StatefulWidget {
 
   final List<QuestionModel> questions;
+  final String quizTitle;
 
   ChallengePage({
     Key? key,
     required this.questions,
+    required this.quizTitle,
   }) : super(key: key);
 
   @override
@@ -39,6 +41,14 @@ class _ChallengePageState extends State<ChallengePage> {
         curve: Curves.linear
       );
     }
+  }
+
+  void onSelected(bool result) {
+    print("Selected with Value: $result");
+    if (result) {
+      controller.correctCount++;
+    }
+    nextPage();
   }
 
   @override
@@ -73,7 +83,7 @@ class _ChallengePageState extends State<ChallengePage> {
         controller: pageController,
         children: widget.questions.map((e) => QuizWidget(
           question: e,
-          onChange: nextPage,
+          onSelected: onSelected,
           )).toList() 
       ),
 
@@ -91,7 +101,14 @@ class _ChallengePageState extends State<ChallengePage> {
                     if (value == widget.questions.length)
                       Expanded(
                         child: NextButtonWidget.green(label: 'Confirmar', onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) 
+                            => ResultPage(
+                                title: widget.quizTitle,
+                                questionCount: widget.questions.length,
+                                correctCuestionCount: controller.correctCount,
+                              )
+                            )
+                          );
                         }),
                       ),
                   ],
