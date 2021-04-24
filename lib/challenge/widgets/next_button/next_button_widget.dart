@@ -35,37 +35,43 @@ class NextButtonWidget extends StatelessWidget {
     this.label = label,
     this.onTap = onTap;
 
+  NextButtonWidget.purple({required String label, required VoidCallback onTap})
+    : this.backgroundColor = AppColors.purple, 
+    this.textColor = AppColors.white, 
+    this.border = AppColors.border,
+    this.overlayColor = AppColors.green, 
+    this.label = label,
+    this.onTap = onTap;
+
   @override
   Widget build(BuildContext context) {
     //Todo change overley on tap
-    return Expanded(
-      child: Container(
-        height: 48,
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-              backgroundColor
-            ),
-            overlayColor: MaterialStateProperty.all<Color>(overlayColor),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )
-            ),
-            side: MaterialStateProperty.all(
-              BorderSide(color: border)
+    return Container(
+      height: 48,
+      child: TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            backgroundColor
+          ),
+          overlayColor: MaterialStateProperty.all<Color>(overlayColor),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             )
           ),
-          onPressed: onTap, 
-          child: Text(
-            label,
-            style: GoogleFonts.notoSans(
-              fontWeight: FontWeight.w600,
-              fontSize: 15,
-              color: textColor
-            ),
-            )
-        )
+          side: MaterialStateProperty.all(
+            BorderSide(color: border)
+          )
+        ),
+        onPressed: onTap, 
+        child: Text(
+          label,
+          style: GoogleFonts.notoSans(
+            fontWeight: FontWeight.w600,
+            fontSize: 15,
+            color: textColor
+          ),
+          )
       )
     );
   }

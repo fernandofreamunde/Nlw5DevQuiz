@@ -1,4 +1,5 @@
 import 'package:DevQuiz/challenge/challenge_controller.dart';
+import 'package:DevQuiz/result/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:DevQuiz/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:DevQuiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
@@ -86,11 +87,13 @@ class _ChallengePageState extends State<ChallengePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     if (value != widget.questions.length)
-                      NextButtonWidget.white(label: 'Saltar', onTap: nextPage),
+                      Expanded(child: NextButtonWidget.white(label: 'Saltar', onTap: nextPage)),
                     if (value == widget.questions.length)
-                      NextButtonWidget.green(label: 'Confirmar', onTap: () {
-                        Navigator.pop(context);
-                      }),
+                      Expanded(
+                        child: NextButtonWidget.green(label: 'Confirmar', onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
+                        }),
+                      ),
                   ],
                 ),
               ),
