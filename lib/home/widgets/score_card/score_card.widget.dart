@@ -4,7 +4,7 @@ import 'package:DevQuiz/core/core.dart';
 import 'package:flutter/material.dart';
 
 class ScoreCardWidget extends StatelessWidget {
-  final int score;
+  final double score;
   const ScoreCardWidget({
     required this.score,
     Key? key
